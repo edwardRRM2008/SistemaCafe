@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Navigate, Outlet, useNavigate } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
+const API_URL = import.meta.env.VITE_API_URL || 'https://sistema-cafe-backend.vercel.app/api'
 
 const Dashboard = () => {
   const navigate = useNavigate()

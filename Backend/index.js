@@ -38,7 +38,7 @@ app.use(async (_request, _response, next) => {
 	}
 })
 
-app.use(cors({ origin: process.env.FRONTEND_URL || 'https://sistema-cafe-liard.vercel.app/' }))
+app.use(cors({ origin: process.env.FRONTEND_URL || 'https://sistema-cafe-liard.vercel.app' }))
 app.use(express.json())
 app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)

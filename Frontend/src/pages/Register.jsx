@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Button from '../components/Button'
 import FormField from '../components/FormField'
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://sistema-cafe-backend.vercel.app'
+const API_URL = import.meta.env.VITE_API_URL || 'https://sistema-cafe-backend.vercel.app/api'
 
 const Register = () => {
   const navigate = useNavigate()
