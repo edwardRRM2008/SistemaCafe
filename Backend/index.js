@@ -32,12 +32,15 @@ const connectToDatabase = async () => {
 
 app.use(cors({ origin: frontendOrigin }))
 
-app.use(async (_request, _response, next) => {
+app.use(async (_request, response, next) => {
 	try {
 		await connectToDatabase()
 		next()
 	} catch (error) {
-		next(error)
+		console.error(`No se pudo conectar con MongoDB: ${error.message}`)
+		response.status(503).json({
+			message: 'La base de datos no esta disponible. Verifica MONGO_URI, JWT_SECRET y el acceso de red de MongoDB Atlas.',
+		})
 	}
 })
 app.use(express.json())
