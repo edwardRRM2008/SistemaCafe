@@ -8,6 +8,7 @@ import categoryRoutes from './routes/categoryRoutes.js'
 
 const app = express()
 const PORT = process.env.PORT || 3000
+const frontendOrigin = (process.env.FRONTEND_URL || 'https://sistema-cafe-liard.vercel.app').replace(/\/+$/, '')
 let mongoConnectionPromise
 
 const connectToDatabase = async () => {
@@ -29,6 +30,8 @@ const connectToDatabase = async () => {
 	await mongoConnectionPromise
 }
 
+app.use(cors({ origin: frontendOrigin }))
+
 app.use(async (_request, _response, next) => {
 	try {
 		await connectToDatabase()
@@ -37,8 +40,6 @@ app.use(async (_request, _response, next) => {
 		next(error)
 	}
 })
-
-app.use(cors({ origin: process.env.FRONTEND_URL || 'https://sistema-cafe-liard.vercel.app' }))
 app.use(express.json())
 app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
